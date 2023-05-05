@@ -43,14 +43,25 @@ return [
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
 
+
+        
+// DB_CONNECTION=mysql
+// DB_HOST=pei17y9c5bpuh987.chr7pe7iynqr.eu-west-1.rds.amazonaws.com
+// DB_PORT=3306
+// DB_DATABASE=diyk6ppkx01zyrqo
+// DB_USERNAME=eb7gk0knl83d2g0b
+// DB_PASSWORD=cmpwd15qfzfw28yl
+// password = m5H!7dE9zcrKMGU
+
+
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
+            'host' => env('DB_HOST', 'db4free.net'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'database' => env('DB_DATABASE', 'gymmanagement'),
+            'username' => env('DB_USERNAME', 'hamzadatabase'),
+            'password' => env('DB_PASSWORD', 'm5H!7dE9zcrKMGU'),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
