@@ -42,11 +42,23 @@ class ExerciseController extends Controller
         $exercise = Exercise::where('id' , $id)->first();
 
         try {
+         
+
+        if ($exercise == null) {
+            return Response()->json([
+                'success' => false,
+                'message' => 'failed',
+                'data' => "Null"
+            ], 404);
+        }else{
             return Response()->json([
                 'success' => true,
                 'message' => 'successfully',
                 'data' => $exercise
             ]);
+        }
+
+        
         } catch (\Throwable $th) {
             return Response()->json([
                 'success' => false,
