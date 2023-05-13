@@ -38,7 +38,7 @@ class AuthController extends Controller {
         return Response()->json([
             'success' => false,
             'message' => 'User Logged in failed',
-            'data' => $message
+            'data' => "Null"
         ], 404);
     }
 
