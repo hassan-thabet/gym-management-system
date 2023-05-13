@@ -12,11 +12,21 @@ class ExerciseController extends Controller
     public function getAllExercises(){
         try {
             $exercises = Exercise::with('muscle')->get();
-            return Response()->json([
-                'success' => true,
-                'message' => 'successfully',
-                'data' => $exercises
-            ]);
+        
+            if($exercises->isEmpty()){
+                return Response()->json([
+                    'success' => false,
+                    'message' => 'failed',
+                    'data' => 'no exercises'
+                ], 404);
+            }else{
+                return Response()->json([
+                    'success' => true,
+                    'message' => 'successfully',
+                    'data' => $exercises
+                ]);
+            }
+
         } catch (\Exception $e) {
             return Response()->json([
                 'success' => false,
@@ -30,11 +40,28 @@ class ExerciseController extends Controller
         
     public function getExercise($id){
         $exercise = Exercise::where('id' , $id)->first();
-        return Response()->json([
-            'success' => true,
-            'message' => 'successfully',
-            'data' => $exercise
-        ]);
+
+        try {
+            if ($exercises->isEmpty()) {
+                  return Response()->json([
+                    'success' => false,
+                    'message' => 'failed',
+                    'data' => 'no exercise'
+                ], 404);
+            }else{
+                return Response()->json([
+                    'success' => true,
+                    'message' => 'successfully',
+                    'data' => $exercise
+                ]);
+            }
+        } catch (\Throwable $th) {
+            return Response()->json([
+                'success' => false,
+                'message' => 'failed',
+                'data' => $e->getMessage()
+            ], 404);
+        }
     }
 
 }
