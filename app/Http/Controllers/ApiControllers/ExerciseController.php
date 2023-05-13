@@ -42,24 +42,16 @@ class ExerciseController extends Controller
         $exercise = Exercise::where('id' , $id)->first();
 
         try {
-            if ($exercises->isEmpty()) {
-                  return Response()->json([
-                    'success' => false,
-                    'message' => 'failed',
-                    'data' => 'no exercise'
-                ], 404);
-            }else{
-                return Response()->json([
-                    'success' => true,
-                    'message' => 'successfully',
-                    'data' => $exercise
-                ]);
-            }
+            return Response()->json([
+                'success' => true,
+                'message' => 'successfully',
+                'data' => $exercise
+            ]);
         } catch (\Throwable $th) {
             return Response()->json([
                 'success' => false,
                 'message' => 'failed',
-                'data' => $e->getMessage()
+                'data' => "Null"
             ], 404);
         }
     }
