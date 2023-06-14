@@ -13,18 +13,27 @@ class PlanController extends Controller
 {
 
     public function getUserPlanByDay($user_id , $day){
+        $plan = Plan::with('exercise')
+        ->with('muscle')
+        ->where('user_id' , $user_id)
+        ->where('day' , $day)
+        ->get()
+        ->all();
         try {
-            $plan = Plan::with('exercise')
-            ->with('muscle')
-            ->where('user_id' , $user_id)
-            ->where('day' , $day)
-            ->get()
-            ->all();
-            return Response()->json([
-                'success' => true,
-                'message' => 'successfully',
-                'data' => $plan
-            ]);
+            if ($plan == null) {
+                return Response()->json([
+                    'success' => false,
+                    'message' => 'failed',
+                    'data' => "null"
+                ], 404);
+            }else{
+                return Response()->json([
+                    'success' => true,
+                    'message' => 'successfully',
+                    'data' => $plan
+                ]);
+            }
+        
         } catch (\Exception $e) {
             return Response()->json([
                 'success' => false,
@@ -37,23 +46,32 @@ class PlanController extends Controller
 
 
     public function getUserPlanByMuscle($user_id , $muscle_id){
+        $plan = Plan::with('exercise')
+        ->with('muscle')
+        ->where('user_id' , $user_id)
+        ->where('muscle_id' , $muscle_id)
+        ->get()
+        ->all();
         try {
-            $plan = Plan::with('exercise')
-            ->with('muscle')
-            ->where('user_id' , $user_id)
-            ->where('muscle_id' , $muscle_id)
-            ->get()
-            ->all();
-            return Response()->json([
-                'success' => true,
-                'message' => 'successfully',
-                'data' => $plan
-            ]);
+            if ($plan == null) {
+                return Response()->json([
+                    'success' => false,
+                    'message' => 'failed',
+                    'data' => "null"
+                ], 404);
+            }
+            else{
+                return Response()->json([
+                    'success' => true,
+                    'message' => 'successfully',
+                    'data' => $plan
+                ]);
+            }
         } catch (\Exception $e) {
             return Response()->json([
                 'success' => false,
                 'message' => 'failed',
-                'data' => $e->getMessage()
+                'data' => 'null'
             ], 404);
         }
     }
@@ -62,19 +80,29 @@ class PlanController extends Controller
 
 
     public function getUserPlanByMuscleAndDay($user_id , $muscle_id , $day){
+        $plan = Plan::with('exercise')
+        ->with('muscle')
+        ->where('user_id' , $user_id)
+        ->where('muscle_id' , $muscle_id)
+        ->where('day' , $day)
+        ->get()
+        ->all();
         try {
-            $plan = Plan::with('exercise')
-            ->with('muscle')
-            ->where('user_id' , $user_id)
-            ->where('muscle_id' , $muscle_id)
-            ->where('day' , $day)
-            ->get()
-            ->all();
-            return Response()->json([
-                'success' => true,
-                'message' => 'successfully',
-                'data' => $plan
-            ]);
+            if ($plan == null) {
+                return Response()->json([
+                    'success' => false,
+                    'message' => 'failed',
+                    'data' => "null"
+                ], 404);
+            }
+            else{
+                return Response()->json([
+                    'success' => true,
+                    'message' => 'successfully',
+                    'data' => $plan
+                ]);
+            }
+        
         } catch (\Exception $e) {
             return Response()->json([
                 'success' => false,

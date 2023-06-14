@@ -15,30 +15,43 @@ class AuthController extends Controller {
 
     public function login(Request $request){
 
-        $request -> validate([
-            'email' => ['required' , 'email', 'max:255'],
-            'password' => ['required', 'min:8'],
-        ]);
+        try {
+            $request -> validate([
+                'email' => ['required' , 'email', 'max:255'],
+                'password' => ['required', 'min:8'],
+            ]);
+        } catch (\Throwable $th) {
+            return Response()->json([
+                'success' => false,
+                'message' => 'entered data not valid',
+                'data' => $th->getMessage()
+            ] , 404);
+        }
 
         $email = $request->input('email');
         $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)){
-            $user = User::where('email' , $email)->first();
-
+        $user = User::where('email' , $email)->first();
+        try {
+            if (Auth::attempt($credentials)){
+                return Response()->json([
+                    'success' => true,
+                    'message' => 'Logged in done successfully',
+                    'data' => $user
+                ]);
+            }
+        } catch (\Throwable $th) {
             return Response()->json([
-                'success' => true,
-                'message' => 'Logged in done successfully',
-                'data' => $user
-            ]);
+                'success' => false,
+                'message' => 'User Logged in failed',
+                'data' => $th->getMessage()
+            ], 404);
         }
-        $message =  [
-            'error' => true,
-            'message' => ' login data is error',
-        ];
+
+
         return Response()->json([
             'success' => false,
             'message' => 'User Logged in failed',
-            'data' => "Null"
+            'data' => 'null'
         ], 404);
     }
 
@@ -46,21 +59,28 @@ class AuthController extends Controller {
 
     public function register(Request $request){
 
-
         try {
             $request -> validate([
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['required' , 'string', 'email', 'max:255', 'unique:users'],
                 'password' => ['required', 'string', 'min:8'],
-    
                 'phone_number' => ['required', 'string'],
-                'height' => ['required'],
-                'weight' => ['required'],
-                'age' => ['required'],
-                'fat_percentage' => ['required'],
+                'height' => ['required' , 'integer'],
+                'weight' => ['required' , 'integer'],
+                'age' => ['required' , 'integer'],
+                'fat_percentage' => ['required' , 'integer'],
             
             ]);
-    
+        } catch (\Throwable $th) {
+            return Response()->json([
+                'success' => false,
+                'message' => 'entered data not valid',
+                'data' => $th->getMessage()
+            ] , 404);
+        }
+
+
+        try {
             $user = new User();
             $user -> name = $request->input('name');
             $user -> email = $request->input('email');

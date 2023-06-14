@@ -29,27 +29,53 @@ class MuscleController extends Controller
     
     public function getMuscle($id){
         $muscle = Muscle::where('id' , $id)->first();
-        return Response()->json([
-            'success' => true,
-            'message' => 'successfully',
-            'data' => $muscle
-        ]);
+        try {
+            if ($muscle == null) {
+                return Response()->json([
+                    'success' => false,
+                    'message' => 'failed',
+                    'data' => "null"
+                ], 404);
+            }else{
+                return Response()->json([
+                    'success' => true,
+                    'message' => 'successfully',
+                    'data' => $muscle
+                ]);
+            }
+        } catch (\Throwable $th) {
+            return Response()->json([
+                'success' => false,
+                'message' => 'failed',
+                'data' => "null"
+            ], 404);
+        } 
+     
     }
 
 
     public function getMuscleExercises($id){
+        $exercises = Exercise::with('muscle')->where('muscle_id' , $id)->get();
         try {
-            $exercises = Exercise::with('muscle')->where('muscle_id' , $id)->get();
-            return Response()->json([
-                'success' => true,
-                'message' => 'successfully',
-                'data' => $exercises
-            ]);
+            if ($exercises == null) {
+                return Response()->json([
+                    'success' => false,
+                    'message' => 'failed',
+                    'data' => "null"
+                ], 404);
+            }else{
+                return Response()->json([
+                    'success' => true,
+                    'message' => 'successfully',
+                    'data' => $exercises
+                ]);
+            }
+        
         } catch (\Exception $e) {
             return Response()->json([
                 'success' => false,
                 'message' => 'failed',
-                'data' => $e->getMessage()
+                'data' => "null"
             ], 404);
         }
     }

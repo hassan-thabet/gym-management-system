@@ -48,7 +48,7 @@ class ExerciseController extends Controller
             return Response()->json([
                 'success' => false,
                 'message' => 'failed',
-                'data' => "Null"
+                'data' => "null"
             ], 404);
         }else{
             return Response()->json([
@@ -63,7 +63,7 @@ class ExerciseController extends Controller
             return Response()->json([
                 'success' => false,
                 'message' => 'failed',
-                'data' => "Null"
+                'data' => "null"
             ], 404);
         }
     }
