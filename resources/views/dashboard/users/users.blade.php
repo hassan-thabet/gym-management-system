@@ -20,6 +20,7 @@
                                     <thead>
                                     <tr>
                                         <th>ID</th>
+                                        <th>Image</th>
                                         <th>Name</th>
                                         <th>email</th>
                                         <th>Phone Number</th>
@@ -35,6 +36,7 @@
                                         <tbody>
                                         <tr>
                                             <td>#{{$user->id}}</td>
+                                            <td class="text-center"><img src="{{$user->image_url}}" style="width: 100px; height: 100px;"></td>
                                             <td class="text-center">{{$user->name}}</td>
                                             <td>{{$user->email}}</td>
                                             @if($user->phone_number != null)

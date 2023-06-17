@@ -30,6 +30,15 @@
                                 <br>
 
                                 <div class="row">
+                                   
+                                   <div class="col">
+                                       <label for="name">Image URL</label>
+                                       <input type="text" class="form-control" name="image_url" id="image_url" placeholder="Image URL" >
+                                   </div>
+                               </div>
+                               <br>
+
+                                <div class="row">
                                     <div class="col">
                                         <label for="height">age</label>
                                         <input type="text" class="form-control" name="age" id="age" placeholder="age" >
