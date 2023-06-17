@@ -21,15 +21,15 @@ Route::group(['namespace' => 'App\Http\Controllers\ApiControllers'] , function()
 
     Route::post('auth/register' , 'AuthController@register');
 
+    Route::get('auth/user/{id}' , 'AuthController@getUserData');
 
-    Route::post('auth/coash/login' , 'CoashController@login');
+
 
 });
 
 
 Route::group(['namespace' => 'App\Http\Controllers\ApiControllers'] , function(){
     
-    // Route::post('auth/coash/login' , 'CoashController@login');
 });
 
 

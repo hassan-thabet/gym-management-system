@@ -113,4 +113,36 @@ class AuthController extends Controller {
     }
 
 
+
+
+    public function getUserData($id){
+        $user = User::where('id' , $id)->first();
+    
+       
+        try {
+
+            if ($user == null) {
+                return Response()->json([
+                    'success' => false,
+                    'message' => 'failed',
+                    'data' => "null"
+                ], 404);
+            }else{
+                return Response()->json([
+                    'success' => true,
+                    'message' => 'successfully',
+                    'data' => $user
+                ]);
+            }
+    
+            
+            } catch (\Throwable $th) {
+                return Response()->json([
+                    'success' => false,
+                    'message' => 'failed',
+                    'data' => "null"
+                ], 404);
+            }
+    }
+
 }
