@@ -65,11 +65,15 @@ class AuthController extends Controller {
                 'email' => ['required' , 'string', 'email', 'max:255', 'unique:users'],
                 'password' => ['required', 'string', 'min:8'],
                 'phone_number' => ['required', 'string'],
+                'image_url' => ['required', 'string'],
                 'height' => ['required' , 'integer'],
                 'weight' => ['required' , 'integer'],
                 'age' => ['required' , 'integer'],
                 'fat_percentage' => ['required' , 'integer'],
-            
+                'gender' => ['required' , 'string'],
+                'membership' => ['string'],
+                'coash_name' => ['string'],
+                
             ]);
         } catch (\Throwable $th) {
             return Response()->json([
@@ -86,11 +90,15 @@ class AuthController extends Controller {
             $user -> email = $request->input('email');
             $user -> password  = Hash::make($request->input('password'));
             $user -> phone_number = $request->input('phone_number');
+            $user -> image_url = $request->input('image_url');
             $user -> height = $request->input('height');
             $user -> weight = $request->input('weight');
             $user -> age = $request->input('age');
             $user -> fat_percentage = $request->input('fat_percentage');
             $user -> account_status = 'Active';
+            $user -> gender = $request->input('gender');
+            $user -> membership = 'Paid';
+            $user -> coash_name = 'Coash Name';
     
             $user -> api_token = bin2hex(openssl_random_pseudo_bytes(30));
             $user -> save();

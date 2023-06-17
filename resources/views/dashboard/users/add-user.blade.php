@@ -77,11 +77,28 @@
                                 </div>
                                 <br>
 
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="first_name">coash_name</label>
+                                        <input type="text" class="form-control" name="coash_name" id="coash_name" placeholder="coash_name" >
+                                    </div>
+                                    <div class="col">
+                                        <label for="last_name">gender</label>
+                                        <input type="text" class="form-control" name="gender" id="gender" placeholder="gender" >
+                                    </div>
+                                </div>
+                                <br>
+
+                                <div class="form-group">
+                                    <label for="exampleInputText1">membership</label>
+                                    <input type="text" class="form-control" id="membership" name="membership" placeholder="membership" >
+                                </div>
+                                <br>
+
                                 <div class="form-group">
                                     <label for="exampleInputText1">Email</label>
                                     <input type="text" class="form-control" id="email" name="email" placeholder="Email" >
                                 </div>
-
                                 
 
                                 <div class="form-group row">

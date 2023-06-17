@@ -28,6 +28,9 @@
                                         <th>Height</th>
                                         <th>weight</th>
                                         <th>Fat</th>
+                                        <th>Gender</th>
+                                        <th>Coash Name</th>
+                                        <th>Membership</th>
                                         <th>account status</th>
                                         <th>Actions</th>
                                     </tr>
@@ -36,7 +39,7 @@
                                         <tbody>
                                         <tr>
                                             <td>#{{$user->id}}</td>
-                                            <td class="text-center"><img src="{{$user->image_url}}" style="width: 100px; height: 100px;"></td>
+                                            <td class="text-center"><img src="{{$user->image_url}}" style="width: 60px; height: 60px;"></td>
                                             <td class="text-center">{{$user->name}}</td>
                                             <td>{{$user->email}}</td>
                                             @if($user->phone_number != null)
@@ -48,6 +51,10 @@
                                             <td class="text-center">{{$user -> height}}</td>
                                             <td class="text-center">{{$user -> weight}}</td>
                                             <td class="text-center">{{$user -> fat_percentage}} %</td>
+
+                                            <td class="text-center">{{$user -> gender}} %</td>
+                                            <td class="text-center">{{$user -> coash_name}} %</td>
+                                            <td class="text-center">{{$user -> membership}} %</td>
 
                                             @if($user->account_status != "Active")
                                             <td class="text-center"><span class="badge rounded-pill bg-danger">Pending</span></td>

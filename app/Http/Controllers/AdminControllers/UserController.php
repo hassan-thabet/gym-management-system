@@ -36,6 +36,9 @@ class UserController extends Controller
                 'height' => $request->height,
                 'weight' => $request->weight,
                 'account_status' => 'Pending',
+                'gender' => $request->gender,
+                'membership' => $request->membership,
+                'coash_name' => $request->coash_name,
                 'api_token' => bin2hex(openssl_random_pseudo_bytes(60)),
             ]);
 
